@@ -1,55 +1,26 @@
-//  PIC rule: package, imports, class
-//  import order doesn't matter
-package io.anviksha.demo;   //  packages must follow the underlying directory structure
+package io.anviksha.demo;
 
 
-
-//  Please refer to the demonstration visuals in resources directory
-
-//  Java source file can contain only types (class, interface, enum, annotation, record)
-//  Only one public type is allowed per file
-//  If the file contains a public type, the name of the file must match the public type
-
-//  Types in Java are conventionally written in PascalCase
-//  Types represent themes (noun-centric) of the things that they model (e.g., BankAccount, CreditCard, FourWheeler, etc.)
 public class Main {
-
-    //  main method is the entry point of the program
-    //  It should be declared public static void main(String[])
-    //  String[] can also be written as String...
-    //  args can be renamed
     public static void main(String[] args) {
-        //  local variables are defined within a method
-        //  that includes method parameters as well
+        //  If the target data type is equal or wider than the source data type,
+        //  then the conversion happens mostly automatically
+        //  Also, for the automatic conversion/explicit cast to work, the types should be compatible
 
-        //  local variable declaration follows: type name = value; format
-        //  value is optional, but uninitialized variable usage is not allowed in Java
+        //  byte a = (byte) true;   //  doesn't work as the types are incompatible
+        long x = 9_000_000_000L;
+        float y = x;    //  target type is narrower, but the conversion is allowed: see https://en.wikipedia.org/wiki/IEEE_754-1985#Range_and_precision
 
-        //  Use int by default for integers
-        int x;  //  ok, but cannot be used unless initialized
-        int y = 3;  //  declaration and initialization; preferred approach
+        int n = 100;
+        double d = n;   //  wider target type
 
-        x = 9;  //  deferred initialization; generally not recommended, unless you have a specific use-case
+        //  char e = 'E';
+        //  short s = e;    //  signed vs unsigned!
 
-        //  beware of precision vs scale with IEEE-754 floating-point numbers
-        //  Usage of floats is generally discouraged
-        //  floats need f or F suffix for literal values
+        //  If the target type is narrower, an explicit cast is required
+        //  casting is not a silver-bullet, both the types need to be compatible
 
-        float a = 3.1415926535F;  //  precision of 8 digits
-
-        //  Use double by default, d or D is the suffix rarely used
-        double b = 3.14159265358979323846;  //  precision of 15 digits
-
-        //  _ can be used as the digit separator
-        //  _ is not allowed in the beginning or end or around the decimal point or before the suffix
-        int c = 1_000_000_000;
-        double d = 3.141_592_653_5;
-        int e = 1_________00;   //  ok, but don't abuse
-
-        //  longs have l or L suffix
-        long m = 9988_776_655L;   //  L is preferred
-
-        //  additional learning trail on primitives:
-        //  https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html
+        double p = 1.998;
+        int q = (int) p;    //  truncation!
     }
 }

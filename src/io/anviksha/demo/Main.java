@@ -22,5 +22,9 @@ public class Main {
 
         double p = 1.998;
         int q = (int) p;    //  truncation!
+
+        //  beware of integer overflow: https://en.wikipedia.org/wiki/Integer_overflow
+        long m = 9_000_000_000L;
+        int v = (int) m;
     }
 }

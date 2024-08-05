@@ -3,22 +3,18 @@ package io.anviksha.demo;
 
 public class Main {
     public static void main(String[] args) {
-        //  +, -, *, /, % work as in mathematics and have the same precedence of the operators
-        //  know the difference between expressions and statements
-        //  https://docs.oracle.com/javase/tutorial/java/nutsandbolts/expressions.html
+        //  +=, -=, *=, /=, %=
 
-        int x = 9/5;    //  integer division!
+        int i = 0;
 
-        double y = 9/5.0;   //  real division (at least one operand is a double)
+        i+=5;   //  i = i + 5;
 
-        double m = 1.4454 % 0.323;  //  works
+        i-=2;   //  i = i - 2;
 
-        //  beware of result offshooting the target type
-        byte b = 126;
-        //  byte c = b + 2; //  error, 128 is out of range for byte
+        i*=4;   //  i = i * 4;
 
-        //  () can be used to change the precedence
-        int v = (2 + 3) * 8;    //  40
-        int w = 2 + 3 * 8;  //  26; recall BODMAS rule!
+        i/=3;   //  i = i / 3;
+
+        i%=2;   //  i = i % 2;
     }
 }

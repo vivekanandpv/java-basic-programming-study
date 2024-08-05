@@ -3,11 +3,8 @@ package io.anviksha.demo;
 
 public class Main {
     public static void main(String[] args) {
-        Sample s = new Sample();
-
-        //  check the following call dispatches through debugger
-        s.printContent(12);
-        s.printContent("Hello");
-        s.printContent(2, "Joy!");
+        //  check the constructor call dispatches through debugger
+        Point2D p = new Point2D();
+        Point2D p2 = new Point2D(2.3, -8);
     }
 }

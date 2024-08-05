@@ -3,26 +3,22 @@ package io.anviksha.demo;
 
 public class Main {
     public static void main(String[] args) {
-        //  continue to skip iteration
-        //  break to exit the loop
-        //  continue and break work in all looping constructs
+        //  First, take a look at the BankAccount.java file
 
-        for (int i = 0; i < 5; i++) {
-            if (i == 3) {
-                continue;   //  skip iteration
-            }
-            System.out.printf("Hello for loop! %d\n", i);
-        }
+        //  BankAccount is a class, account is a variable that points to an object of that class
 
-        int j = 0;
+        //  class is a blueprint and object is a realization of that
+        //  object is also called an instance of the class
 
-        while (j < 10) {
-            if (j == 6) {
-                break;  //  exit the loop
-            }
-            System.out.printf("Hello while loop! %d\n", j);
+        //  new BankAccount() is often used to create an instance of the class
+        BankAccount account = new BankAccount();
 
-            ++j;
-        }
+        //  API is now accessible on the object
+        //  calling methods on the object
+        account.deposit(1220);
+        account.withdraw(100);
+
+        //  private members are not accessible
+        //  double d = account.balance;
     }
 }

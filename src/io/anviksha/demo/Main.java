@@ -3,19 +3,20 @@ package io.anviksha.demo;
 
 public class Main {
     public static void main(String[] args) {
-        //  relational operators are used for comparison
-        //  they produce boolean results
+        //  logical operators are conjunction (&&), disjunction (||), and negation (!)
+        //  These can be applied to only boolean operands
+        //  Result is a boolean, of course
 
-        //  == and != for reference types checks for object reference equality,
-        //  not the content equality
-        //  In case of String, there is interning to be careful of
-        //  In such cases .equals(...) is to be used
+        //  In Java, there is no automatic boolean conversion
 
-        boolean a = 7 > 6;      //  true
-        boolean b = 7 == 8;     //  false
-        boolean c = 7 < 9;      //  true
-        boolean d = 7 >= 10;    //  false
-        boolean e = 7 <= 90;    //  true
-        boolean f = 7 != 9;     //  true
+        //  && and || operators do use short-circuit evaluation
+        //  https://en.wikipedia.org/wiki/Short-circuit_evaluation
+
+        //  On the other hand, & and | do not use short-circuit evaluation
+
+        boolean a = true && false;      //  =false
+        boolean b = true || false;      //  =true
+        boolean c = true && !false;     //  true; ! has higher precedence
+        boolean d = !(true && false);   //  true; () changes the precedence
     }
 }

@@ -2,24 +2,12 @@ package io.anviksha.demo;
 
 
 public class Main {
+    //  Before the constructor of a class is executed, it's superclass constructor is called
+    //  If the superclass has a parameterized constructor, then the subclass must pass the argument through super() call
+
     public static void main(String[] args) {
-        Car c = new Car();
+        Car c = new Car("KA01AS9087");  //  trace the construction process
 
-        //  check how this gets dispatched through debugger
-        c.drive();
-
-        //  API is defined by the type, but implementation is provided by the value
-        //  This is the runtime polymorphism, where the command (invocation of the method) is general
-        //  but the execution is specific by the value
-        //  Observe how these calls get dispatched
-
-        Vehicle v1 = new Vehicle();
-        v1.drive(); //  dispatched to Vehicle (Vehicle is the value)
-
-        Vehicle v2 = new FourWheeler();
-        v2.drive(); //  dispatched to FourWheeler
-
-        Vehicle v3 = new Car();
-        v3.drive(); //  dispatched to Car
+        System.out.println(c.getRegistrationNumber());
     }
 }

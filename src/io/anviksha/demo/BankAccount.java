@@ -6,14 +6,19 @@ public class BankAccount {
     private String holder;
     private double balance;
 
-    //  constructor is a special kind of method that is used to initialize class variables
-    //  constructor has the same name as the class, but no return type is mentioned
-    //  If there are no constructors, only then the compiler inserts a default constructor as:
-    //  public BankAccount() { }
 
-    //  explicit constructor is written for demonstration
-    public BankAccount() {
-        System.out.println("Inside the BankAccount constructor");
+    //  constructor is used to initialize the fields
+    //  constructor parameters and fields can have the same names as in this case (usually the case)
+    //  in such case, the "this" qualifier is used to disambiguate the fields
+    //  As such, this qualifier can be used (within the class) with any member of the class
+    //  it is generally used in situations where disambiguation is needed
+
+    //  It is often a good idea to initialize the fields from the values given by the client
+    public BankAccount(int number, boolean active, String holder, double balance) {
+        this.number = number;   //  this.number (field), number (parameter)
+        this.active = active;
+        this.holder = holder;
+        this.balance = balance;
     }
 
     public void deposit(double amount) {

@@ -3,24 +3,22 @@ package io.anviksha.demo;
 
 public class Main {
     public static void main(String[] args) {
-        //  If the target data type is equal or wider than the source data type,
-        //  then the conversion happens mostly automatically
-        //  Also, for the automatic conversion/explicit cast to work, the types should be compatible
+        //  +, -, *, /, % work as in mathematics and have the same precedence of the operators
+        //  know the difference between expressions and statements
+        //  https://docs.oracle.com/javase/tutorial/java/nutsandbolts/expressions.html
 
-        //  byte a = (byte) true;   //  doesn't work as the types are incompatible
-        long x = 9_000_000_000L;
-        float y = x;    //  target type is narrower, but the conversion is allowed: see https://en.wikipedia.org/wiki/IEEE_754-1985#Range_and_precision
+        int x = 9/5;    //  integer division!
 
-        int n = 100;
-        double d = n;   //  wider target type
+        double y = 9/5.0;   //  real division (at least one operand is a double)
 
-        //  char e = 'E';
-        //  short s = e;    //  signed vs unsigned!
+        double m = 1.4454 % 0.323;  //  works
 
-        //  If the target type is narrower, an explicit cast is required
-        //  casting is not a silver-bullet, both the types need to be compatible
+        //  beware of result offshooting the target type
+        byte b = 126;
+        //  byte c = b + 2; //  error, 128 is out of range for byte
 
-        double p = 1.998;
-        int q = (int) p;    //  truncation!
+        //  () can be used to change the precedence
+        int v = (2 + 3) * 8;    //  40
+        int w = 2 + 3 * 8;  //  26; recall BODMAS rule!
     }
 }

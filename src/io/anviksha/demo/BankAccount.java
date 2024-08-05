@@ -7,13 +7,6 @@ public class BankAccount {
     private double balance;
 
 
-    //  constructor is used to initialize the fields
-    //  constructor parameters and fields can have the same names as in this case (usually the case)
-    //  in such case, the "this" qualifier is used to disambiguate the fields
-    //  As such, this qualifier can be used (within the class) with any member of the class
-    //  it is generally used in situations where disambiguation is needed
-
-    //  It is often a good idea to initialize the fields from the values given by the client
     public BankAccount(int number, boolean active, String holder, double balance) {
         this.number = number;   //  this.number (field), number (parameter)
         this.active = active;
@@ -27,5 +20,22 @@ public class BankAccount {
 
     public void withdraw(double amount) {
         //  logic
+    }
+
+    //  getter and setters are called mutator methods: https://en.wikipedia.org/wiki/Mutator_method
+    //  It is advisable to use IDE features to generate getter/setter when you need
+    //  JavaBean specification governs the naming conventions
+    //  https://download.oracle.com/otn-pub/jcp/7224-javabeans-1.01-fr-spec-oth-JSpec/beans.101.pdf?AuthParam=1722873627_35210c96ccb260643091d5761abb3c3d
+
+    //  to provide readonly access to a field, a getter is used
+    public int getNumber() {
+        return number;
+    }
+
+    //  sometimes, a setter helps you set the value of a field
+    //  may be after due validation
+    public void setNumber(int number) {
+        //  validation logic
+        this.number = number;
     }
 }

@@ -3,8 +3,11 @@ package io.anviksha.demo;
 
 public class Main {
     public static void main(String[] args) {
-        BankAccount account = new BankAccount(12234, true, "John Doe", 1500);
+        Sample s = new Sample();
 
-        account.deposit(122.33);
+        //  check the following call dispatches through debugger
+        s.printContent(12);
+        s.printContent("Hello");
+        s.printContent(2, "Joy!");
     }
 }

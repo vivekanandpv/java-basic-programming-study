@@ -9,5 +9,7 @@ public class Main {
         s.printContent(12);
         s.printContent("Hello");
         s.printContent(2, "Joy!");
+        s.foo("one", "two", "three");   //  varargs
+        s.foo(new String[] {"one", "two", "three"});    //  also possible
     }
 }

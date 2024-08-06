@@ -22,6 +22,25 @@ public class Sample {
 
     }
 
+    //  varargs (variadic arguments) are added in Java 5
+    //  only one varargs at the end per method is allowed
+    //  varargs is an array inside (user will not pass it as an array,
+    //  but the runtime will weave it as such)
+    //  varargs can also be called with an explicit array at the call site
+
+    //  Please refer:
+    //  https://docs.oracle.com/javase/8/docs/technotes/guides/language/varargs.html
+    //  https://stackoverflow.com/questions/766559/when-do-you-use-varargs-in-java
+    public void foo(String... args) {
+        System.out.println(args.length);    //  args is an array
+    }
+
+    //  varargs and array parameter are equivalents for overloading
+    //  hence, the following overload is not allowed
+    //  public void foo(String[] args) {
+    //      System.out.println(args.length);    //  args is an array
+    //  }
+
     //  overloads can have different return types
     //  method signatures are as following:
     //  printContent(int)

@@ -14,6 +14,8 @@ import io.anviksha.demo.lib.Sample;
 //  hence, even with explicit import it is not accessible outside the package
 //  import io.anviksha.demo.lib.Demo;
 
+//  refer to java-access-modifiers.png in resources directory
+
 public class Main {
     public static void main(String[] args) {
         Sample s = new Sample("token2", "Chennai", "mark@gmail.com");

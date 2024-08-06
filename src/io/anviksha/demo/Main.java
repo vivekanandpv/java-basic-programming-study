@@ -1,57 +1,39 @@
 package io.anviksha.demo;
 
-//  when components are separate, yet are combined to make a compositional entity
-//  the association relation is born.
+//  Main is in different package, hence the explicit import is required
+//  packages have physical directory hierarchy, but for imports they are distinct
+//  types declared in parent package have to be imported in child package and vice-versa
+import io.anviksha.demo.lib.Sample;
 
-//  one class uses the other class/es as fields
+//  types within java.lang need no explicit import
+//  the order of import statements does not matter
+//  wildcard imports from packages is allowed (though, no encouraged by some)
+//  static members can be imported from a type
 
-//  Engine and Transmission are component classes
-class Engine {
-    public void start() {
-        //  logic
-    }
-
-    public void stop() {
-        //  logic
-    }
-}
-
-class Transmission {
-
-}
-
-//  Car is composed on Engine and Transmission
-class Car {
-    //  this association creates dependencies
-
-    //  if the Engine or Transmission can be used independently of Car
-    //  then the relation is called aggregation
-    //  if not, the relation is called composition
-    //  Aggregation is relatively looser than composition
-    private Engine engine;  //  Car has an Engine
-    private Transmission transmission;  //  Car has a transmission
-
-    //  dependencies are inverted, preferably in constructor
-    //  this is to relinquish the control over dependency's life cycle
-    //  also called Inversion of Control (IoC). nowadays known as Dependency Inversion (DI)
-    public Car(Engine engine, Transmission transmission) {
-        this.engine = engine;
-        this.transmission = transmission;
-    }
-
-    private void start() {
-        //  this is called delegation
-        engine.start();
-    }
-
-    private void stop() {
-        engine.stop();
-    }
-}
+//  Demo has no modifier (package private)
+//  hence, even with explicit import it is not accessible outside the package
+//  import io.anviksha.demo.lib.Demo;
 
 public class Main {
     public static void main(String[] args) {
+        Sample s = new Sample("token2", "Chennai", "mark@gmail.com");
 
+        //  error; protected members are not accessible outside the package to non-subclasses
+        //  System.out.println(s.email);
+
+        //  error; Demo is no-modifier (package private)
+        //  Demo d  = new Demo();
+    }
+}
+
+class Scaffold extends Sample {
+    public Scaffold(String token, String city, String email) {
+        super(token, city, email);
+    }
+
+    //  protected member is visible to subclasses across the packages
+    public Scaffold(String token) {
+        super(token);
     }
 }
 

@@ -1,39 +1,68 @@
 package io.anviksha.demo;
 
-//  Main is in different package, hence the explicit import is required
-//  packages have physical directory hierarchy, but for imports they are distinct
-//  types declared in parent package have to be imported in child package and vice-versa
-import io.anviksha.demo.lib.Sample;
+//  interfaces are used to enforce the APIs on classes
+//  an interface cannot declare fields, even if it does, they are static final (constants)
+//  traditionally interface members are abstract methods
+//  interfaces saw significant upgrade in Java 8
+//  here, we talk of only the traditional interfaces
 
-//  types within java.lang need no explicit import
-//  the order of import statements does not matter
-//  wildcard imports from packages is allowed (though, no encouraged by some)
-//  static members can be imported from a type
 
-//  Demo has no modifier (package private)
-//  hence, even with explicit import it is not accessible outside the package
-//  import io.anviksha.demo.lib.Demo;
+interface A {
+    void f();   //  abstract is implicit
+}
+
+interface B {
+    void g();
+}
+
+//  an interface can extend multiple interfaces
+interface C extends A, B {
+    //  C already has f() from A and g() from B
+    void h();
+}
+
+//  a class can implement multiple interfaces
+class M implements A, B {
+
+    @Override
+    public void f() {
+
+    }
+
+    @Override
+    public void g() {
+
+    }
+}
+
+class N implements A {
+
+    @Override
+    public void f() {
+
+    }
+}
+
 
 public class Main {
     public static void main(String[] args) {
-        Sample s = new Sample("token2", "Chennai", "mark@gmail.com");
+        //  interface is a type, but it cannot be used as value
+        //  new A() is not allowed
+        A a = new M();
+        B b = new M();
 
-        //  error; protected members are not accessible outside the package to non-subclasses
-        //  System.out.println(s.email);
+        A a2 = new N(); //  polymorphism; for A, there are multiple implementers: M and N
 
-        //  error; Demo is no-modifier (package private)
-        //  Demo d  = new Demo();
+        //  a special note on Anonymous inner class (AIC)
+        //  https://docs.oracle.com/javase/tutorial/java/javaOO/anonymousclasses.html
+        //  new implementation class is created by the compiler in this use
+        //  many Java developers do not encourage this approach
+        //  https://stackoverflow.com/questions/2284396/java-anonymous-or-not-inner-classes-is-it-good-to-use-them
+        A a3 = new A() {
+            @Override
+            public void f() {
+
+            }
+        };
     }
 }
-
-class Scaffold extends Sample {
-    public Scaffold(String token, String city, String email) {
-        super(token, city, email);
-    }
-
-    //  protected member is visible to subclasses across the packages
-    public Scaffold(String token) {
-        super(token);
-    }
-}
-

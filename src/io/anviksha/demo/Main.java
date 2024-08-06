@@ -2,44 +2,50 @@ package io.anviksha.demo;
 
 public class Main {
     public static void main(String[] args) {
-        //  arrays are fixed size, ordered, indexable, contiguously allocated collections of similar elements
-        //  array type can be primitive or user-defined
-        //  refer to: https://stackoverflow.com/a/17559021/3969961
+        //  Strings are immutable. You cannot change a string object in place.
+        //  All these methods return new strings, which can be used to "replace" the old string
+        //  The old string will then get garbage collected
 
-        //  idiomatic approach
-        int[] ar1;
+        //  case conversion
+        String s1 = "Hello".toUpperCase();
+        String s2 = "Hello".toLowerCase();
 
-        //  C-style declaration; not recommended
-        int ar2[];
+        //  indexing
+        char c = "Hello".charAt(2); //  get character at index
+        int i = "Hello".indexOf('l');   //  first index from start
+        int j = "Hello".lastIndexOf('l');   //  last index from start
+        int k = "Hello".indexOf('x');   //  -1 if not found
 
-        ar1 = new int[5];   //  array of 5 elements; all initialized to 0 (or equivalent)
+        //  substring
+        String ss1 = "Hello".substring(2);  //  [2, end]
+        String ss2 = "Hello".substring(1, 3);   //  [1, 3)
 
-        ar2 = new int[] {4, 3, 5, 0};   //  regular initializer with elements; size is not allowed in this case
+        //  splitting
+        String[] parts = "green;blue;red".split(";");   //  split by regex or separator
 
-        //  direct initializer approach; doesn't work to produce the standalone value of arrays,
-        //  such as passing the array arguments in place in a method call
-        int[] ar3 = {4, 3, 2, 1};
+        //  contains
+        boolean contains = "Hello".contains("ll");
 
-        //  arrays are indexable; index starts with 0
-        //  array element access outside the bound throws a runtime exception
-        System.out.println(ar1[0]);
+        //  regex match
+        boolean matches = "ABCD1234".matches("^[A-Z]{4}[0-9]{4}$");
 
-        //  arrays elements can be mutated by indexes
-        //  array element access outside the bound throws a runtime exception
-        ar1[0] = 23;
+        //  stripping
+        String s3 = "     Hello World!   ".strip();
+        String s4 = "     Hello World!   ".stripLeading();
+        String s5 = "     Hello World!   ".stripTrailing();
 
+        //  though += is overloaded for strings, it is not efficient given strings are immutable
+        //  hence, StringBuilder and StringBuffer are useful
+        //  StringBuffer has the same API as StringBuilder
+        //  StringBuffer has synchronized methods, suited for multithreaded programming
+        //  StringBuilder has non synchronized methods
 
+        StringBuilder sbuilder = new StringBuilder();
+        sbuilder.append("Hi");
+        sbuilder.append(" ");
+        sbuilder.append("there!");
+        sbuilder.append(" ");
 
-        //  arrays have (readonly) length property
-        System.out.println(ar1.length);
-
-        //  arrays are objects behind the scene
-        //  https://docs.oracle.com/javase/specs/jls/se8/html/jls-10.html
-        ar2 = null;
-
-        //  arrays can be used with for-each loop
-        for (int i : ar3) {
-            System.out.println(i);
-        }
+        String finalString = sbuilder.toString();
     }
 }

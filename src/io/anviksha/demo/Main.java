@@ -1,44 +1,47 @@
 package io.anviksha.demo;
 
-//  interfaces are used to enforce the APIs on classes
-//  an interface cannot declare fields, even if it does, they are static final (constants)
-//  traditionally interface members are abstract methods
-//  interfaces saw significant upgrade in Java 8
-//  here, we talk of only the traditional interfaces
+//  abstract classes are used as type, but they cannot be used as values
+//  these are used to provide infrastructure to the subclasses
+//  like regular classes, they can have fields and constructors
+//  abstract class must be subclassed, hence abstract final isn't allowed
+//  abstract classes may or may not have any abstract members
+//  abstract methods can only be declared in an abstract class
+//  only methods can be abstract
+//  such methods cannot have implementation (body)
+//  when a class extends an abstract class, it must implement all the abstract methods
+//  of the superclass, unless the subclass is also an abstract class
+//  a class cannot extend multiple abstract classes
+//  abstract class can also implement interfaces, in which they may or may not provide the implementation
+//  refer to Jva Collection API for the use of abstract classes and interfaces
+//  In JDK, the Abstract prefix is used for abstract classes
 
+abstract class Vehicle {
+    //  fields cannot be abstract
+    private final String registrationNumber;
 
-interface A {
-    void f();   //  abstract is implicit
+    //  constructors cannot be abstract
+    public Vehicle(String registrationNumber) {
+        this.registrationNumber = registrationNumber;
+    }
+
+    //  abstract methods cannot have any implementation (body)
+    public abstract void drive();
+
+    //  abstract classes can have non-abstract methods
+    public void honk() { }
+
+    //  abstract classes can have final methods
+    public final void start() { }
 }
 
-interface B {
-    void g();
-}
+class Car extends Vehicle {
 
-//  an interface can extend multiple interfaces
-interface C extends A, B {
-    //  C already has f() from A and g() from B
-    void h();
-}
-
-//  a class can implement multiple interfaces
-class M implements A, B {
-
-    @Override
-    public void f() {
-
+    public Car(String registrationNumber) {
+        super(registrationNumber);
     }
 
     @Override
-    public void g() {
-
-    }
-}
-
-class N implements A {
-
-    @Override
-    public void f() {
+    public void drive() {
 
     }
 }
@@ -46,23 +49,9 @@ class N implements A {
 
 public class Main {
     public static void main(String[] args) {
-        //  interface is a type, but it cannot be used as value
-        //  new A() is not allowed
-        A a = new M();
-        B b = new M();
-
-        A a2 = new N(); //  polymorphism; for A, there are multiple implementers: M and N
-
-        //  a special note on Anonymous inner class (AIC)
-        //  https://docs.oracle.com/javase/tutorial/java/javaOO/anonymousclasses.html
-        //  new implementation class is created by the compiler in this use
-        //  many Java developers do not encourage this approach
-        //  https://stackoverflow.com/questions/2284396/java-anonymous-or-not-inner-classes-is-it-good-to-use-them
-        A a3 = new A() {
-            @Override
-            public void f() {
-
-            }
-        };
+        //  Vehicle can only be used as type
+        //  value has to be any concrete subclass of Vehicle, such as Car
+        Vehicle v = new Car("KA01AS9876");  //  polymorphism
+        v.drive();
     }
 }
